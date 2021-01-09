@@ -1,0 +1,66 @@
+<aura:component controller="LinenSort" implements="force:appHostable,forceCommunity:availableForAllPageTypes,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >
+    <aura:attribute type="Linen__c[]" name="linenList"/>
+    <aura:attribute name="Image" type="url"/>
+    <aura:attribute name="Name" type="String"/>
+    <aura:attribute name="Type" type="String"/>
+    <aura:attribute name="SubType" type="String"/>
+    <aura:handler name="init" value="{! this}" action="{!c.doInit}"/>
+    <aura:registerEvent name="addToCart" type="c:AddToCart"/> 
+    <lightning:card  class="toy">
+        <lightning:layout  horizontalAlign="space">
+            <lightning:layoutItem >
+                <lightning:select aura:Id="selectType" name="selectType" value="{!v.Type}" label="Type" onchange="{!c.doChange}">
+                    <option >--Select Type--</option>
+                    <option value="Laundry">Laundry</option>
+                    <option value="Dry Cleaning">Dry Cleaning</option>
+                    <option value="Washing">Washing</option>
+                </lightning:select> 
+            </lightning:layoutItem>
+            <lightning:layoutItem >
+                <lightning:select aura:Id="selectSubType" name="selectSubType" value="{!v.SubType}" label="SubType" onchange="{!c.doChange1}">
+                    <option >--Select Sub Type--</option>
+                    <option value="Daily">Daily</option>
+                    <option value="Day by Day">Day by Day</option>
+                    <option value="Weekly">Weekly</option>
+                </lightning:select> 
+            </lightning:layoutItem>
+            <lightning:button label="Clear Filter" onclick="{! c.doInit }"></lightning:button>             
+        </lightning:layout>
+    </lightning:card>
+    <div  class="slds-grid slds-wrap">
+        <aura:iteration items="{!v.linenList}" var="item" indexVar="index">
+  			<div class="slds-col slds-size_1-of-3 slds-p-around_small">
+                <lightning:card>
+                    <p class="slds-p-horizontal_medium">
+                        <div class="slds-grid slds-gutters">
+                            <a target="_blank" href="{!v.url+'/'+ item.Id}">
+                                <div class="slds-col slds-size_1-of-2">
+                                    <img src="{!item.Image__c}" alt="Avatar" style="width:120px" />
+                                </div>
+                            </a>                           
+                            <div class="slds-col slds-size_2-of-2 slds-p-around_small">
+                                <div class="details">
+                                    <a target="_blank" href="{!v.url+'/'+ item.Id}" >{!item.Name}</a><br/>
+                                    Type: {!item.Type__c}  <br/>
+                                    SubType: {!item.SubType__c}  <br/>
+                                    <div class="price">
+                                        <sup class="rupee"></sup>
+                                        <lightning:formattedNumber style="currency" value="{!item.Price__c}"></lightning:formattedNumber>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </p>
+                    <aura:set attribute="footer">
+                            <lightning:button  variant="brand" name="{!item.Id}" 
+                                              iconName="utility:cart"
+                                              label="Add To Cart"
+                                              title="Add To Cart"
+                                              value="{!index}"
+                                              onclick="{!c.addToCart }" />
+                     </aura:set>
+                        </lightning:card>
+                    </div>
+                </aura:iteration>
+            </div>
+    </aura:component>
