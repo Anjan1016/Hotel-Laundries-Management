@@ -1,0 +1,18 @@
+<aura:component implements="force:appHostable,forceCommunity:availableForAllPageTypes,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" > 
+   <aura:handler name="addToCart" event="c:AddToCart" action="{!c.updateCart}"/>
+    <!--<aura:handler name="openEvent" event="c:OpenCompEvent1" action="{!c.handleComponentEvent}"/>--> 
+    <aura:attribute type="Linen__c[]" name="linenList"/>
+    <!--<aura:attribute type="boolean" name="flag" default="true"/>
+    <aura:attribute type="boolean" name="openComp" default="false"/>
+   <aura:if isTrue="{!v.flag}">
+    <c:oppregister/>
+    </aura:if>
+    <aura:if isTrue="{!v.openComp}">-->
+    <div>
+        <c:HeaderComponent  aura:id="headerComp" TagLine="Hotel Laundries Management" message="Select the Laundry Items!" />
+    </div>
+    <div>
+        <c:LinenSort />
+    </div>
+    <!--</aura:if>-->    
+</aura:component>
