@@ -1,0 +1,27 @@
+.THIS.listLinen{
+    border: 2px solid #056E74;
+    background-color: greenyellow;
+  padding: 10px;
+  border-radius: 30px 20px;
+}
+.THIS img{
+    border-radius: 50px 50px;
+}
+.THIS .details{
+    font-size: 15px;
+}
+.THIS.toy{
+      border: 2px solid #056E74;
+   
+  padding: 10px;
+  border-radius: 5px 10px;
+ 	   background-color:#b3d9ff;
+    color: #000000;
+    font-weight: 900;
+    padding:15px 15px 15px 15px;
+}
+.THIS .price{
+    font-size: 20px;
+    color: #e0491f;
+    font-weight:600;
+}
